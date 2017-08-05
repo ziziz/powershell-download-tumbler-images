@@ -21,14 +21,14 @@ Param( [int]$pageStart, [int]$pageEnd )
 for( $i = $pageStart; $i -le $pageEnd; $i++ ){
 
     # Set this to the URL you wish
-    $url = "http://your_site_here.tumblr.com/page/$i"
+    $url = "http://unixporn.tumblr.com/page/$i"
 
     Write-Output "Getting Page $url"
 
     $resp = Invoke-WebRequest -Uri $url
 
     $pictures = $resp.ParsedHtml.body.getElementsByTagName('div') |
-        where {$_.getAttributeNode('class').Value -eq 'right'}
+        where {$_.getAttributeNode('class').Value -eq 'photo-wrapper-inner'}
 
     foreach( $element in $pictures ){
 
